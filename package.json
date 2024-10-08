@@ -1,0 +1,11 @@
+{
+  "name": "@adammcarth/print-azure-env",
+  "bin": "src/index.js",
+  "version": "1.0.0",
+  "description": "Fetches environment variables from an Azure App Service (or Function App) and prints them in a variety of formats.",
+  "main": "src/index.js",
+  "repository": "https://github.com/adammcarth/print-azure-env",
+  "author": "Adam McArthur",
+  "license": "MIT",
+  "private": false
+}
