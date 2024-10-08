@@ -30,3 +30,47 @@ $ print-azure-env --type webapp --resource-group staging --name my-webapp
 | -s, --slot           | Optional.                                                                                | No        | Production |
 | -f, --format         | What format to print the data in. Allowed values: `dotenv`, `local_settings` or `azure`. | No        | `dotenv`   |
 | --no-keyvault        | Prevent this script from fetching secrets from the keyvault.                             | No        | `false`    |
+
+## Supported Output Formats
+
+You can paste this output into a `.env` file at the root of your local application.
+
+### `--format dotenv`
+
+```
+VARIABLE_A=value
+VARIABLE_B=value
+```
+
+### `--format local_settings`
+
+This format is used by Azure Function Apps during local development (as opposed to a `.env` file). Save the output of this into the root directory of your Function App repository in a file called `local.settings.json`.
+
+```json
+{
+  "Encrypted": false,
+  "Values": {
+    "VARIABLE_A": "value",
+    "VARIABLE_B": "value"
+  }
+}
+```
+
+### `--format azure`
+
+This is the standard Azure environment variable configuration format. You can paste the contents of this output into the "Advanced edit" section inside the environment variable configuration tab in your Azure Portal. This allows you to easily copy the environment variables from one application to another, whilst also removing any dependencies on a keyvault (if necessary).
+
+```json
+[
+  {
+    "name": "VARIABLE_A",
+    "value": "value",
+    "slotSetting": false
+  },
+  {
+    "name": "VARIABLE_B",
+    "value": "value",
+    "slotSetting": false
+  }
+]
+```
